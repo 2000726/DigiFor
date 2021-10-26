@@ -1,6 +1,22 @@
 {
-  "name": "Chrome Extension Draft Name",
+  "name": "Browser Forensics",
   "description": "This is a Chrome Extension written by Shahmizan",
   "version": "0.1",
   "manifest_version": 3
+  
+  "icons": {
+    "16": "",
+    "48": "",
+    "128": ""
+  },
+  
+  "page_action": {
+    "default_icon": {
+      "16": "",
+      "48": "",
+      "128": ""
+    }
+  },
+
+  "content_scripts": [{}]
 }
