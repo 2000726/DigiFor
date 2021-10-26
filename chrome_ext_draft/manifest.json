@@ -1,20 +1,21 @@
 {
+  "author": "Mohammad Shahmizan",
   "name": "Browser Forensics",
-  "description": "This is a Chrome Extension written by Shahmizan",
   "version": "0.1",
-  "manifest_version": 3
+  "manifest_version": 3,
+  "description": "This is a Chrome Extension written by Shahmizan",
+  "homepage_url": "https://github.com/2000726/DigiFor",
   
   "icons": {
-    "16": "",
-    "48": "",
-    "128": ""
+    "16": "/images/icon16.png",
+    "48": "/images/icon48.png",
+    "128": "/images/icon128.png"
   },
-  
   "page_action": {
     "default_icon": {
-      "16": "",
-      "48": "",
-      "128": ""
+      "16": "/images/icon16.png",
+      "48": "/images/icon48.png",
+      "128": "/images/icon128.png"
     }
   },
 
