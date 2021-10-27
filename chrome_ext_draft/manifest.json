@@ -3,7 +3,7 @@
   "name": "Browser Forensics",
   "version": "0.1",
   "manifest_version": 3,
-  "description": "This is a Chrome Extension written by Shahmizan",
+  "description": "Chrome extension to aid Browser Forensics for all!",
   "homepage_url": "https://github.com/2000726/DigiFor",
   
   "icons": {
@@ -11,6 +11,7 @@
     "48": "/images/icon48.png",
     "128": "/images/icon128.png"
   },
+  
   "page_action": {
     "default_icon": {
       "16": "/images/icon16.png",
@@ -18,6 +19,13 @@
       "128": "/images/icon128.png"
     }
   },
+  
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Browser Forensics Downloader"
+  },
 
+  "permissions": [ "downloads", "history", "bookmarks", "cookies", "tabs" ],
+  "update_url": "https://clients2.google.com/service/update2/crx",
   "content_scripts": [{}]
 }
