@@ -2,9 +2,9 @@
 <html>
   <head>
     
-    <!-- CSS -->
+    <!-- CSS: TODO -->
     <style type="text/css">
-      <!-- TODO -->
+
     </style>
     
     <!-- Import JS Scripts -->
@@ -16,17 +16,26 @@
     
     <!-- Parent Div Container -->
     <div class="parent">
+      
+      <!-- Header / Title -->
       <div class="child">
+        <p>Browser Forensics Export</p>
       </div>
       
       <!-- Timing Options -->
       <div class="child">
-        
+        <p style="font-size: 16px;">Specify time range</p>
+        <select style="font-size: 14px;" id="timeRange">
+          <option value="day">1 Day</option>
+          <option value="week">1 Week</option>
+          <option value="month">1 Month</option>
+          <option value="year">1 Year</option>
+          <option value="forever">Forever</option>
+        </select><br>
       </div>
       
       <!-- Data Options -->
       <div class="child">
-        
       </div>
       
       <!-- Download Buttons -->
