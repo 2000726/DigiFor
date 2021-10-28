@@ -19,7 +19,8 @@ def print_history():
     conn = sqlite3.connect(f'{getenv("USERPROFILE")}/History')
     cur = conn.cursor()
     cur.execute("SELECT url FROM urls")
-    print(cur.fetchall())
+    history = cur.fetchall()
+    print('\n'.join(str(i) for i in history))
     conn.close()
 
 def print_password():
