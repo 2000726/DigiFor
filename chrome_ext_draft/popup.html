@@ -6,11 +6,16 @@
     <style type="text/css">
       body {
         width: 360px;
+		font-family: sans-serif;
       }
       
       .child {
         text-align: center;
       }
+	  
+	  select{
+		font-size: 14px;
+	  }
     </style>
     
     <!-- Import JS Scripts -->
@@ -25,13 +30,13 @@
       
       <!-- Header / Title -->
       <div class="child">
-        <p>Browser Forensics Export</p>
+        <p style="font-weight: bold;">Browser Forensics Export</p>
       </div>
       
       <!-- Timing Options -->
       <div class="child">
         <p style="font-size: 16px;">Specify time range:</p>
-        <select style="font-size: 14px;" id="timeRange">
+        <select id="timeRange">
           <option value="day">1 Day</option>
           <option value="week">1 Week</option>
           <option value="month">1 Month</option>
@@ -45,8 +50,8 @@
       <!-- Can probably use this scuffed select options method OR -->
       <!-- TODO: Data Options -->
       <div class="child">
-        <p style="font-size: 16px;">Specify data to export, hold CTRL and click to multi-select:</p>
-        <select style="font-size: 14px;" id="dataOptions">
+        <p style="font-size: 16px;">Specify data to export, <br> hold CTRL and click to multi-select:</p>
+        <select id="dataOptions" multiple>
           <option value="history">History</option>
           <option value="cookies">Cookies</option>
           <option value="passwords">Passwords</option>
@@ -63,6 +68,7 @@
       
       
       <!-- Download Buttons -->
+      &nbsp
       <div class="child">
         <button id="downloadCSV">Download as CSV</button>
         <button id="downloadJSON">Download as JSON</button>
