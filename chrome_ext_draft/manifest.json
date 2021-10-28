@@ -3,7 +3,7 @@
   "name": "Browser Forensics",
   "version": "0.1",
   "manifest_version": 3,
-  "description": "Chrome extension to aid Browser Forensics for all!",
+  "description": "Browser Forensics for all!",
   "homepage_url": "https://github.com/2000726/DigiFor",
   
   "icons": {
