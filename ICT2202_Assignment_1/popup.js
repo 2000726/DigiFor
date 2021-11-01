@@ -3,13 +3,13 @@
 document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
 
-  document.getElementById('btn-day').onclick = function(){
+  document.getElementById('btn-week').onclick = function(){
     history.getHistory(7);
   };
-  document.getElementById('btn-week').onclick = function(){
-    history.getHistory(30);
+  document.getElementById('btn-month').onclick = function(){
+    history.getHistory(31);
   };
-  document.getElementById('btn-all').onclick = function(){
+  document.getElementById('btn-year').onclick = function(){
     history.getHistory(365);
   };
 });
@@ -51,8 +51,12 @@ History.prototype.download = function(history){
 	// Converts the array above, to strings, undefine the conversion, and set 2 spaces/tabs
 	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
 	
-	var url = URL.createObjectURL(blob);
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
 	
-	chrome.downloads.download({});
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
 	
 }
