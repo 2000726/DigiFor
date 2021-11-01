@@ -25,6 +25,7 @@ History.prototype.getHistory = function(range){
 	var startTime = currentTime.setDate(currentTime.getDate() - range);
 	var timestamp = currentTime.getTime();
 	
+	// Text : Left empty to retrieve all pages
 	chrome.history.search({'text': '', 'maxResults': 100000000, 'startTime': startTime,}, this.download);
 }
 
@@ -46,5 +47,12 @@ History.prototype.download = function(history){
 			'typedCount': history[index].typedCount
 		});
 	}
+	
+	// Converts the array above, to strings, undefine the conversion, and set 2 spaces/tabs
+	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob);
+	
+	chrome.downloads.download({});
 	
 }
