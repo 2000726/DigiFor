@@ -1,3 +1,4 @@
+
 // Listens to when User clicks on the link
 document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
@@ -12,3 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
     history.getHistory(365);
   };
 });
+
+
+// Pre-defining History function
+var History = function(){}
+
+
+// Getting History
+History.prototype.getHistory = function(range){
+	var currentTime = new Date(); // Specify current time
+	var startTime = currentTime.setDate(currentTime.getDate() - range);
+	var timestamp = startTime.getTime();
+}
