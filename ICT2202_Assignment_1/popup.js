@@ -23,5 +23,28 @@ var History = function(){}
 History.prototype.getHistory = function(range){
 	var currentTime = new Date(); // Specify current time
 	var startTime = currentTime.setDate(currentTime.getDate() - range);
-	var timestamp = startTime.getTime();
+	var timestamp = currentTime.getTime();
+	
+	chrome.history.search({'text': '', 'maxResults': 100000000, 'startTime': startTime,}, this.download);
+}
+
+// Downloading
+History.prototype.download = function(history){
+	
+	var filename = "history.json";
+	var to_file = []; // Array to store the entries
+	var index;
+	
+	// Use a for loop to store the entries to the array specified above.
+	for (index = 0; index < history.length; ++index){
+		to_file.push({
+			'id': history[index].id,
+			'lastVisitTime': new Date(history[index].lastVisitTime).toLocaleString(),
+			'title': history[index].title,
+			'url': history[index].url,
+			'visitCount': history[index].visitCount,
+			'typedCount': history[index].typedCount
+		});
+	}
+	
 }
