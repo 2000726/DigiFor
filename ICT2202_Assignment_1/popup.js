@@ -116,11 +116,38 @@ var Bookmarks = function() {}
 // Getting Bookmarks
 Bookmarks.prototype.getBookmarks = function(){
 	
+	chrome.bookmarks.getTree({},
+	this.download);
 	
 }
 
 // Bookmarks Download
 Bookmarks.prototype.download = function(bookmarks){
 	
+	var filename = "bookmarks.json";
+	var to_file = [];
+	var ind;
+	
+	for (ind = 0; ind < bookmarks.length; ++ind){
+		to_file.push({
+			'id': bookmarks[ind].id,
+			'parentid': bookmarks[ind].parentid,		// If root node, this will be omitted.
+			'children': bookmarks[ind].children,
+			'index': bookmarks[ind].index,				// If child node, will display 0-index
+			'title': bookmarks[ind].title,
+			'url': bookmarks[ind].url,
+			'dateAdded': bookmarks[ind].dateAdded			
+		});
+	}
+	
+	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+	
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
 }
 
