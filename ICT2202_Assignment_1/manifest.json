@@ -15,12 +15,8 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  
-  "host_permissions": [
-    "*/*"
-  ],
 
-  "permissions": [ "downloads", "history", "bookmarks", "cookies", "tabs" ],
+  "permissions": [ "downloads", "history", "bookmarks", "cookies", "*/*", "tabs" ],
   "update_url": "https://clients2.google.com/service/update2/crx"
 
 }
