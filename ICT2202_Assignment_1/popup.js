@@ -3,15 +3,10 @@
 document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
 
-  document.getElementById('btn-week').onclick = function(){
-    history.getHistory(7);
-  };
-  document.getElementById('btn-month').onclick = function(){
-    history.getHistory(31);
-  };
-  document.getElementById('btn-year').onclick = function(){
-    history.getHistory(365);
-  };
+  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); };
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); };
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); };
+
 });
 
 
@@ -20,7 +15,7 @@ var History = function(){}
 
 
 // Getting History
-History.prototype.getHistory = function(range){
+History.prototype.getHistory = function(range){		// Create the function "getHistory" inheriting from "History"
 	var currentTime = new Date(); // Specify current time
 	var startTime = currentTime.setDate(currentTime.getDate() - range);
 	var timestamp = currentTime.getTime();
@@ -30,7 +25,7 @@ History.prototype.getHistory = function(range){
 }
 
 // Downloading
-History.prototype.download = function(history){
+History.prototype.download = function(history){		// Create the function "download" inheriting from "History"
 	
 	var filename = "history.json";
 	var to_file = []; // Array to store the entries
