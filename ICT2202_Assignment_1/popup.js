@@ -71,13 +71,7 @@ var Cookies = function() {}
 // Getting Cookies
 Cookies.prototype.getCookies = function(){		// Create the function "getCookies" inheriting from "Cookies"
 	
-	chrome.cookies.getAll({
-		'name': '',
-		'path': '',
-		'secure': '',
-		'expirationDate': '',
-		'value': '',
-	},
+	chrome.cookies.getAll({},
 	this.download);
 }
 
