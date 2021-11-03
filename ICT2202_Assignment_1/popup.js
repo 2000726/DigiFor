@@ -2,10 +2,11 @@
 // Listens to when User clicks on the link
 document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
+  var cookies = new Cookies();
 
-  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); };
-  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); };
-  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); };
+  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); };
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); };
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); };
 
 });
 
@@ -21,10 +22,15 @@ History.prototype.getHistory = function(range){		// Create the function "getHist
 	var timestamp = currentTime.getTime();
 	
 	// Text : Left empty to retrieve all pages
-	chrome.history.search({'text': '', 'maxResults': 100000000, 'startTime': startTime,}, this.download);
+	chrome.history.search({
+		'text': '', 
+		'maxResults': 100000000, 
+		'startTime': startTime,
+	}, 
+	this.download);		// Calls the "download" function.
 }
 
-// Downloading
+// History Download
 History.prototype.download = function(history){		// Create the function "download" inheriting from "History"
 	
 	var filename = "history.json";
@@ -55,3 +61,46 @@ History.prototype.download = function(history){		// Create the function "downloa
 	});
 	
 }
+
+
+
+// Pre-defining Cookies function
+var Cookies = function() {}
+
+
+// Getting Cookies
+Cookies.prototype.getCookies = function(){		// Create the function "getCookies" inheriting from "Cookies"
+	
+	chrome.cookies.getAll({
+		'name': '',
+		'path': '',
+		'secure': '',
+		'expirationDate': '',
+		'value': '',
+	},
+	this.download);
+}
+
+// Cookies Download
+Cookies.prototype.download = function(cookies){		// Create the function "download" inheriting from "Cookies"
+	
+	var filename = "cookies.json";
+	var to_file = [];
+	var index;
+	
+	for (index = 0; index < cookies.length; ++index){
+		to_file.push({
+		});
+	}
+	
+	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+	
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+}
+
