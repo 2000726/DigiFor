@@ -86,6 +86,7 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 		to_file.push({
 			'id': index,
 			'name': cookies[index].name,
+			'domain': cookies[index].domain,
 			'path': cookies[index].path,
 			'secure': cookies[index].secure,
 			'expiration': cookies[index].expirationDate,
