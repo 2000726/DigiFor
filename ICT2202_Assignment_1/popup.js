@@ -36,17 +36,17 @@ History.prototype.download = function(history){		// Create the function "downloa
 	
 	var filename = "history.json";
 	var to_file = []; // Array to store the entries
-	var index;
+	var i;
 	
 	// Use a for loop to store the entries to the array specified above.
-	for (index = 0; index < history.length; ++index){
+	for (i = 0; i < history.length; ++i){
 		to_file.push({
-			'id': history[index].id,
-			'lastVisitTime': new Date(history[index].lastVisitTime).toLocaleString(),
-			'title': history[index].title,
-			'url': history[index].url,
-			'visitCount': history[index].visitCount,
-			'typedCount': history[index].typedCount
+			'id': history[i].id,
+			'lastVisitTime': new Date(history[i].lastVisitTime).toLocaleString(),
+			'title': history[i].title,
+			'url': history[i].url,
+			'visitCount': history[i].visitCount,
+			'typedCount': history[i].typedCount
 		});
 	}
 	
@@ -81,17 +81,17 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 	
 	var filename = "cookies.json";
 	var to_file = [];
-	var index;
+	var i;
 	
-	for (index = 0; index < cookies.length; ++index){
+	for (i = 0; i < cookies.length; ++i){
 		to_file.push({
-			'id': index,
-			'name': cookies[index].name,
-			'domain': cookies[index].domain,
-			'path': cookies[index].path,
-			'secure': cookies[index].secure,
-			'expiration': cookies[index].expirationDate,
-			'value': cookies[index].value
+			'id': i,
+			'name': cookies[i].name,
+			'domain': cookies[i].domain,
+			'path': cookies[i].path,
+			'secure': cookies[i].secure,
+			'expiration': cookies[i].expirationDate,
+			'value': cookies[i].value
 		});
 	}
 	
@@ -116,7 +116,11 @@ var Bookmarks = function() {}
 // Getting Bookmarks
 Bookmarks.prototype.getBookmarks = function(){
 	
-	chrome.bookmarks.getTree({},
+	chrome.bookmarks.search({
+		'query': null,
+		'url': null,
+		'title': null,
+	},
 	this.download);
 	
 }
@@ -126,17 +130,16 @@ Bookmarks.prototype.download = function(bookmarks){
 	
 	var filename = "bookmarks.json";
 	var to_file = [];
-	var ind;
+	var i;
 	
-	for (ind = 0; ind < bookmarks.length; ++ind){
+	for (i = 0; i < bookmarks.length; ++i){
 		to_file.push({
-			'id': bookmarks[ind].id,
-			'parentid': bookmarks[ind].parentid,		// If root node, this will be omitted.
-			'children': bookmarks[ind].children,
-			'index': bookmarks[ind].index,				// If child node, will display 0-index
-			'title': bookmarks[ind].title,
-			'url': bookmarks[ind].url,
-			'dateAdded': bookmarks[ind].dateAdded			
+			'index': bookmarks[i].index,				// If child node, will display 0-index
+			'id': bookmarks[i].id,
+			'title': bookmarks[i].title,
+			'url': bookmarks[i].url,
+			'parentid': bookmarks[i].parentid,		// If root node, this will be omitted.
+			'dateAdded': bookmarks[i].dateAdded.toLocaleString()
 		});
 	}
 	
