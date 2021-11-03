@@ -84,13 +84,16 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 	var i;
 	
 	for (i = 0; i < cookies.length; ++i){
+		var t = new Date(1970, 0, 1);
+		var exp = cookies[i].expirationDate;
+		t.setSeconds(exp);
 		to_file.push({
 			'id': i,
 			'name': cookies[i].name,
 			'domain': cookies[i].domain,
 			'path': cookies[i].path,
 			'secure': cookies[i].secure,
-			'expiration': cookies[i].expirationDate,
+			'expiration': t.toLocaleString(),
 			'value': cookies[i].value
 		});
 	}
@@ -139,7 +142,7 @@ Bookmarks.prototype.download = function(bookmarks){
 			'title': bookmarks[i].title,
 			'url': bookmarks[i].url,
 			'parentid': bookmarks[i].parentid,		// If root node, this will be omitted.
-			'dateAdded': bookmarks[i].dateAdded.toLocaleString()
+			'dateAdded': new Date(bookmarks[i].dateAdded).toLocaleString()
 		});
 	}
 	
