@@ -2,7 +2,7 @@
   "author": "Mohammad Shahmizan",
   "name": "ICT 2202 Assignment 1 Browser Forensics",
   "version": "0.3",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "Chrome extension to aid Browser Forensics for all!",
   "homepage_url": "https://github.com/2000726/DigiFor",
   
@@ -12,11 +12,13 @@
     "128": "/images/icon128.png"
   },
   
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html"
   },
 
-  "permissions": [ "downloads", "history", "bookmarks", "cookies", "http://*/*", "https://*/*", "tabs" ],
+  "host_permissions": [ "*://*/*" ],
+  
+  "permissions": [ "downloads", "history", "bookmarks", "cookies", "tabs" ],
   "update_url": "https://clients2.google.com/service/update2/crx"
 
 }
