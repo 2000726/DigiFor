@@ -3,10 +3,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
   var cookies = new Cookies();
+  var bookmarks = new Bookmarks();
 
-  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); };
-  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); };
-  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); };
+  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); };
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); };
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); };
 
 });
 
@@ -103,5 +104,23 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 		filename: filename,
 		saveAs: true	// Allows user to rename / overwrite the filename and extension
 	});
+}
+
+
+
+
+// Pre-defining Bookmarks function
+var Bookmarks = function() {}
+
+
+// Getting Bookmarks
+Bookmarks.prototype.getBookmarks = function(){
+	
+	
+}
+
+// Bookmarks Download
+Bookmarks.prototype.download = function(bookmarks){
+	
 }
 
