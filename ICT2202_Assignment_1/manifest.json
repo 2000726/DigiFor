@@ -1,7 +1,7 @@
 {
-  "author": "Mohammad Shahmizan",
+  "author": "Mohammad Shahmizan, Nicholas Lum Ye Han",
   "name": "ICT 2202 Assignment 1 Browser Forensics",
-  "version": "0.4",
+  "version": "0.5",
   "manifest_version": 3,
   "description": "Chrome extension to aid Browser Forensics for all!",
   "homepage_url": "https://github.com/2000726/DigiFor",
