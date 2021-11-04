@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var cookies = new Cookies();
   var bookmarks = new Bookmarks();
   var topsites = new TopSites();
+  var system = new System();
   let blob;
 
-  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
-  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
-  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
-  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
+  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); system.getSystem(); };
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); system.getSystem(); };
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); system.getSystem(); };
+  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); system.getSystem(); };
 
 });
 
@@ -195,3 +196,101 @@ TopSites.prototype.download = function(topSites){
 		saveAs: true	// Allows user to rename / overwrite the filename and extension
 	});
 }
+
+
+
+// Pre-defining System functions
+var System = function() {}
+
+System.prototype.getSystem = function(){
+	chrome.system.cpu.getInfo(this.downloadCPU);
+	chrome.system.memory.getInfo(this.downloadMemory);
+	chrome.system.storage.getInfo(this.downloadStorage);
+}
+
+// Download the CPU information
+System.prototype.downloadCPU = function(CPU){
+	
+	var filename = "sysinfo_cpu.json";
+	var to_file = [];
+	
+	to_file.push({
+		'architecture': CPU.archName,
+		'model': CPU.modelName,
+		'# of processors': CPU.numOfProcessors
+	});
+	
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+}
+
+// Download the Memory information
+System.prototype.downloadMemory = function(memory){
+	
+	var filename = "sysinfo_memory.json";
+	var to_file = [];
+	
+	to_file.push({
+		'available': memory.availableCapacity,
+		'total': memory.capacity + " bytes"
+	});
+	
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+}
+
+System.prototype.downloadStorage = function(storage){
+	
+	var filename = "sysinfo_storage.json";
+	
+	blob = new Blob([JSON.stringify(storage,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+}
+
+
+
+
+
+/* 
+System.prototype.systemDownload = function(){
+	
+	var cpu = chrome.system.cpu.getInfo();
+	var memory = chrome.system.memory.getInfo();
+	var storage = chrome.system.storage.getInfo();
+	
+	var filename = "sysinfo.json";
+	
+	var to_file = [cpu,memory,storage];
+	
+	
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+} */
