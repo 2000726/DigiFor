@@ -7,7 +7,7 @@
 			body{
 				font-family: sans-serif;
 				margin-top: 0;
-				min-width: 300px;
+				min-width: 350px;
 			}.action-button {
 				border-radius: 5px;
 				float: left;
@@ -16,21 +16,25 @@
 				padding: 5px 13px;
 				position: relative;
 				text-decoration: none;
-			} #status{
-				padding-bottom: 16px;
+				color: #000;
+				background-color: #6d7b82;
+				border-bottom: 2px solid #2c2f33;
+				border-right: 2px solid #2c2f33;
+			}.action-button:hover{
+				background-color: #3498DB;
+				border-bottom: 2px solid #2c2f33;
+				border-right: 2px solid #2c2f33;
 			}
-
 		</style>
     </head>
     <body>
         <div class="global-box">
-            <h2>Export Browser's History</h2>
+            <h2>Export History, Cookies & Bookmarks</h2>
             <div class="buttons-box">
                 <a href="#" class="action-button" id="btn-week">Past Week</a>
                 <a href="#" class="action-button" id="btn-month">Past Month</a>
                 <a href="#" class="action-button" id="btn-year">Past Year</a>
             </div>
-            <span id="status"></span>
         </div>
     </body>
 </html>
