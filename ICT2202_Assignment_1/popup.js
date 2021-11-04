@@ -8,18 +8,22 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); };
   document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); };
   document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); };
+  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); };
 
 });
+
 
 
 // Pre-defining History function
 var History = function(){}
 
-
 // Getting History
 History.prototype.getHistory = function(range){		// Create the function "getHistory" inheriting from "History"
 	var currentTime = new Date(); // Specify current time
-	var startTime = currentTime.setDate(currentTime.getDate() - range);
+	var startTime = 0;
+	if (range != 44444){		// Used to check if user wants to export "all-time"
+		startTime = currentTime.setDate(currentTime.getDate() - range);
+	}
 	var timestamp = currentTime.getTime();
 	
 	// Text : Left empty to retrieve all pages
@@ -42,7 +46,7 @@ History.prototype.download = function(history){		// Create the function "downloa
 	for (i = 0; i < history.length; ++i){
 		to_file.push({
 			'id': history[i].id,
-			'lastVisitTime': new Date(history[i].lastVisitTime).toLocaleString(),
+			'lastVisitTime': new Date(history[i].lastVisitTime).toLocaleString("en-SG"),
 			'title': history[i].title,
 			'url': history[i].url,
 			'visitCount': history[i].visitCount,
@@ -68,7 +72,6 @@ History.prototype.download = function(history){		// Create the function "downloa
 // Pre-defining Cookies function
 var Cookies = function() {}
 
-
 // Getting Cookies
 Cookies.prototype.getCookies = function(){		// Create the function "getCookies" inheriting from "Cookies"
 	
@@ -93,7 +96,7 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 			'domain': cookies[i].domain,
 			'path': cookies[i].path,
 			'secure': cookies[i].secure,
-			'expiration': t.toLocaleString(),
+			'expiration': t.toLocaleString("en-SG"),
 			'value': cookies[i].value
 		});
 	}
@@ -111,10 +114,8 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 
 
 
-
 // Pre-defining Bookmarks function
 var Bookmarks = function() {}
-
 
 // Getting Bookmarks
 Bookmarks.prototype.getBookmarks = function(){
@@ -142,7 +143,7 @@ Bookmarks.prototype.download = function(bookmarks){
 			'title': bookmarks[i].title,
 			'url': bookmarks[i].url,
 			'parentid': bookmarks[i].parentid,		// If root node, this will be omitted.
-			'dateAdded': new Date(bookmarks[i].dateAdded).toLocaleString()
+			'dateAdded': new Date(bookmarks[i].dateAdded).toLocaleString("en-SG")
 		});
 	}
 	
