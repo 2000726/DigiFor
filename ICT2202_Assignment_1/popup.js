@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var cookies = new Cookies();
   var bookmarks = new Bookmarks();
   var topsites = new TopSites();
+  let blob;
 
   document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
-  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
-  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
-  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
+  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
 
 });
 
@@ -56,7 +57,7 @@ History.prototype.download = function(history){		// Create the function "downloa
 	}
 	
 	// Converts the array above, to strings, undefine the conversion, and set 2 spaces/tabs
-	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
 	
 	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
 	
@@ -102,7 +103,7 @@ Cookies.prototype.download = function(cookies){		// Create the function "downloa
 		});
 	}
 	
-	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
 	
 	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
 	
@@ -148,7 +149,7 @@ Bookmarks.prototype.download = function(bookmarks){
 		});
 	}
 	
-	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
 	
 	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
 	
@@ -158,6 +159,8 @@ Bookmarks.prototype.download = function(bookmarks){
 		saveAs: true	// Allows user to rename / overwrite the filename and extension
 	});
 }
+
+
 
 // Pre-defining Topsite function
 var TopSites = function() {}
@@ -176,12 +179,13 @@ TopSites.prototype.download = function(topSites){
 	
 	for (i = 0; i < topSites.length; ++i){
 		to_file.push({
+			'index': i,
 			'title': topSites[i].title,			
 			'url': topSites[i].url
 		});
 	}
 	
-	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
 	
 	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
 
