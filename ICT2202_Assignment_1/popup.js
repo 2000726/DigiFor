@@ -4,11 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
   var history = new History();
   var cookies = new Cookies();
   var bookmarks = new Bookmarks();
+  var topsites = new TopSites();
 
-  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); };
-  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); };
-  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); };
-  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); };
+  document.getElementById('btn-week').onclick = function(){ history.getHistory(7); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites(); };
+  document.getElementById('btn-month').onclick = function(){ history.getHistory(31); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
+  document.getElementById('btn-year').onclick = function(){ history.getHistory(365); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
+  document.getElementById('btn-alltime').onclick = function(){ history.getHistory(44444); cookies.getCookies(); bookmarks.getBookmarks(); topsites.getTopSites();};
 
 });
 
@@ -158,3 +159,35 @@ Bookmarks.prototype.download = function(bookmarks){
 	});
 }
 
+// Pre-defining Topsite function
+var TopSites = function() {}
+
+// Get the top sites the user has visited
+TopSites.prototype.getTopSites = function(){
+	chrome.topSites.get(this.download);
+}
+
+// Topsite dl
+TopSites.prototype.download = function(topSites){
+	
+	var filename = "topSites.json";
+	var to_file = [];
+	var i;
+	
+	for (i = 0; i < topSites.length; ++i){
+		to_file.push({
+			'title': topSites[i].title,			
+			'url': topSites[i].url
+		});
+	}
+	
+	var blob = new Blob([JSON.stringify(to_file,undefined,2)],{type:'application/octet-binary'});
+	
+	var url = URL.createObjectURL(blob); // Creates an URL which will be used for download 
+
+	chrome.downloads.download({
+		url: url,
+		filename: filename,
+		saveAs: true	// Allows user to rename / overwrite the filename and extension
+	});
+}
