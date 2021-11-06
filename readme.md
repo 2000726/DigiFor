@@ -1,4 +1,4 @@
-__Team Binary Thieves - ICT2202 Assignment 1__
+__P6 - Team Binary Thieves - ICT2202 Assignment 1__
 ==
 
 Description
