@@ -14,7 +14,7 @@ In here, you'll find our solution to ICT2202's Assignment 1.
 Installation
 ----
 To install, click on the load unpacked button in developer mode while in the extension manager, once there, locate oour extension file and load it.
-<p align="center"><img src="https://user-images.githubusercontent.com/77711988/140610390-591c1ec1-0175-4372-be6f-473f1179893c.png" alt = "Click on load Unpacked in developer mode in extension manager"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/77711988/140610390-591c1ec1-0175-4372-be6f-473f1179893c.png" alt = "Click on load Unpacked in developer mode in extension manager"></p> <p align="center"> testing </p>
 <p align="center"><img src="https://user-images.githubusercontent.com/77711988/140610435-b99a7438-322d-4bcf-b73e-2683e015010f.png" alt = "Choose your file location"></p>
 
 Usage
