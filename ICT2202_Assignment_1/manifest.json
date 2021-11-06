@@ -1,6 +1,6 @@
 {
   "author": "Mohammad Shahmizan, Nicholas Lum Ye Han",
-  "name": "ICT 2202 Assignment 1 Browser Forensics",
+  "name": "Chrome Browser Forensics Tool",
   "version": "0.6",
   "manifest_version": 3,
   "description": "Chrome extension to aid Browser Forensics for all!",
